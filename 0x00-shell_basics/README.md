@@ -1,6 +1,6 @@
 # 0x00. Shell, basics
 
-## General
+##General
 - What does RTFM mean?
 - What is a Shebang
 - What is the Shell
