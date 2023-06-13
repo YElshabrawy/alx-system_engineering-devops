@@ -1,10 +1,4 @@
-# 0x00. Shell, basics
+# General Notes
 
-## General
-- What does RTFM mean?
-- What is a Shebang
-- What is the Shell
-- What is the shell
-- What is the difference between a terminal and a shell
-- What is the shell prompt
-- How to use the history (the basics)
+## 0x03 Shell, init files, variables and expansions
+- If we place text inside double quotes, all the special characters used by the shell lose their special meaning and are treated as ordinary characters. The exceptions are “$”, “\” (backslash), and “`” (back- quote)
