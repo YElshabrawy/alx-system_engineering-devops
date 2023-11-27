@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 # comment :3
 
-if [ $# -ne 1 ]; then
-	echo "Usage: manage_my_process {start|stop|restart}"
-	exit 1
-fi
-
 if [ "$1" == "start" ]; then
 	./manage_my_process &
 	echo "$!" >> /var/run/my_process.pid
