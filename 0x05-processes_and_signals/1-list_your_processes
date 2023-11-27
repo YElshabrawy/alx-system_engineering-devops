@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # comment :3
 
-ps -u
+ps auxf
