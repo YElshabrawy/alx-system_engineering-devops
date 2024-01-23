@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# cmt
+# Install
+apt-get update
+apt-get install -y nginx
+
+# Manage index page
+echo "Hello World!" > /var/www/html/index.html
+
+# listen on port 80 not 80 default
+sed -i 's/80 default_server;/80;/g' /etc/nginx/sites-available/default
+
+/etc/init.d/nginx restart
