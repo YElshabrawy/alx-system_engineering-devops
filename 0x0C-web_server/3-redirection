@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# cmt
+# Install
+apt-get update
+apt-get install -y nginx
+
+# Manage index page
+echo "Hello World!" > /var/www/html/index.html
+
+# listen on port 80 not 80 default
+sed -i 's/80 default_server;/80;/g' /etc/nginx/sites-available/default
+
+# /redirect_me page should be redirected to another page
+new_line="location /redirect_me {\n\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n}"
+sed -i "s@server_name _;@server_name _;\n\t$new_line@g" /etc/nginx/sites-available/default
+
+/etc/init.d/nginx restart
