@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# cmt
+# Install
+apt-get update
+apt-get install -y nginx
+
+# Manage index page
+echo "Hello World!" > /var/www/html/index.html
+
+# listen on port 80 not 80 default
+sed -i 's/80 default_server;/80;/g' /etc/nginx/sites-available/default
+
+# custom 404 page
+content="error_page 404 /custom_404;\n\n\tlocation = /custom_404 {\n\t\tinternal;\n\t\tdefault_type text/plain;\n\t\treturn 404 \"Ceci n'est pas une page\\n\";\n\t}"
+sed -i "s@server_name _;@server_name _;\n\n\t$content@g" /etc/nginx/sites-available/default
+
+/etc/init.d/nginx restart
