@@ -10,8 +10,5 @@ fi
 # add a custom header
 sed -i '/server_name _;/a \        add_header X-Served-By $hostname;' /etc/nginx/sites-available/default
 
-# test syntax errors
-nginx -t
-
 # restart nginx
 /etc/init.d/nginx restart
