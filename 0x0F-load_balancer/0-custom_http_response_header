@@ -1,26 +1,17 @@
 #!/usr/bin/env bash
 # tst
 
-# 1. Install nginx
-apt-get update
-apt-get install -y nginx
+# Install nginx
+if ! command -v nginx &> /dev/null; then
+	apt-get update
+	apt-get install -y nginx
 
-# 2. Create a custom landing page
-echo "Hello World!" > /var/www/html/index.html
+	# Create a custom landing page
+	echo "Hello World!" > /var/www/html/index.html
 
-# 3. listen on port 80 not 80 default
-sed -i 's/80 default/80/g' /etc/nginx/sites-available/default
+	# add a custom header
+	echo "add_header X-Served-By \$hostname;" >> /etc/nginx/sites-available/default
+fi
 
-# 4. /redirect_me should redirect to youtube
-new_line="location /redirect_me { return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t }"
-sed -i "s/server_name _;/server_name _;\n\t $new_line/g" /etc/nginx/sites-available/default
-
-# 5. Custom 404 page
-content="error_page 404 /custom_404;\n\n\tlocation = /custom_404 {\n\t\tinternal;\n\t\tdefault_type text/plain;\n\t\treturn 404 \"Ceci n'est pas une page\\n\";\n\t}"
-sed -i "s/server_name _;/server_name _;\n\t $content@g" /etc/nginx/sites-available/default
-
-# 4. add a custom header
-echo "add_header X-Served-By \"\$HOSTNAME\";" >> /etc/nginx/sites-available/default
-
-# 5. restart nginx
+# restart nginx
 /etc/init.d/nginx restart
