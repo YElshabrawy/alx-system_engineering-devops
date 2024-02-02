@@ -5,12 +5,13 @@
 if ! command -v nginx &> /dev/null; then
 	apt-get update
 	apt-get install -y nginx
-
-	# Create a custom landing page
-	echo "Hello World!" > /var/www/html/index.html
 fi
+
 # add a custom header
-echo "add_header X-Served-By \$hostname;" >> /etc/nginx/sites-available/default
+sed -i '/server_name _;/a \        add_header X-Served-By $hostname;' /etc/nginx/sites-available/default
+
+# test syntax errors
+nginx -t
 
 # restart nginx
 /etc/init.d/nginx restart
