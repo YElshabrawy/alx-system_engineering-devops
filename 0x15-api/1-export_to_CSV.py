@@ -9,7 +9,7 @@ if __name__ == "__main__":
     url_usr = f'https://jsonplaceholder.typicode.com/users/{userid}'
     url_todos = 'https://jsonplaceholder.typicode.com/todos'
 
-    username = requests.get(url_usr).json()["name"]
+    username = requests.get(url_usr).json()["username"]
     todos = requests.get(url_todos).json()
     filename = f"{userid}.csv"
     with open(filename, "w") as f:
