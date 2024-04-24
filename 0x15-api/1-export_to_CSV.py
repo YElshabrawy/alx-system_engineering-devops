@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 '''gg'''
-from sys import argv
 import requests
-import csv
+from sys import argv
 
 
 if __name__ == "__main__":
