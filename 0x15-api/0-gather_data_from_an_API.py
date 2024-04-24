@@ -21,4 +21,4 @@ if __name__ == "__main__":
                 completed += 1
                 completed_todos.append(todo["title"])
     print(f"Employee {username} is done with tasks({completed}/{count}):")
-    [print(x) for x in completed_todos]
+    [print('\t', x) for x in completed_todos]
