@@ -1,3 +1,4 @@
+'''module'''
 #!/usr/bin/python3
 # This script prints the number of subscribers for a given subreddit.
 
